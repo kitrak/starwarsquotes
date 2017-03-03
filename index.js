@@ -15,6 +15,9 @@ MongoClient.connect('mongodb://swadmin:swpassword@ds113650.mlab.com:13650/swquot
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.get('/', (req, res) => {
+	var cursor = db.collection('quotes').find().toArray(function(err, results) {
+		console.log(results)
+	})
 	res.sendFile(__dirname + '/index.html')
 })
 
@@ -26,3 +29,5 @@ app.post('/quotes', (req, res) => {
 	})
 	console.log(req.body)
 })
+
+
