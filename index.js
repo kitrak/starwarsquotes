@@ -6,19 +6,23 @@ const app = express();
 MongoClient.connect('mongodb://swadmin:swpassword@ds113650.mlab.com:13650/swquotes', (err, database) => {
 	if (err) return console.log(err)
 	db = database
-	// ... start the server swadmin/swpassword
 	app.listen(3000, function() {
     	console.log("Listening on 3000")
 	})
 })
 
+app.set('view engine', 'ejs')
+//res.render(view, locals)
+
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.get('/', (req, res) => {
-	var cursor = db.collection('quotes').find().toArray(function(err, results) {
-		console.log(results)
+	db.collection('quotes').find().toArray(function(err, result) {
+		if (err) return console.log(err)
+		console.log(result)
+		res.render('index.ejs', {quotes: result})
 	})
-	res.sendFile(__dirname + '/index.html')
+	//res.sendFile(__dirname + '/index.html')
 })
 
 app.post('/quotes', (req, res) => {
