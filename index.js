@@ -12,7 +12,6 @@ MongoClient.connect('mongodb://swadmin:swpassword@ds113650.mlab.com:13650/swquot
 })
 
 app.set('view engine', 'ejs')
-//res.render(view, locals)
 
 app.use(bodyParser.urlencoded({extended: true}))
 
