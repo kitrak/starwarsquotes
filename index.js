@@ -21,7 +21,6 @@ app.get('/', (req, res) => {
 		console.log(result)
 		res.render('index.ejs', {quotes: result})
 	})
-	//res.sendFile(__dirname + '/index.html')
 })
 
 app.post('/quotes', (req, res) => {
