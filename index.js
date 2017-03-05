@@ -12,8 +12,9 @@ MongoClient.connect('mongodb://swadmin:swpassword@ds113650.mlab.com:13650/swquot
 })
 
 app.set('view engine', 'ejs')
-
 app.use(bodyParser.urlencoded({extended: true}))
+app.use(express.static('public'))
+app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
 	db.collection('quotes').find().toArray(function(err, result) {
@@ -30,6 +31,10 @@ app.post('/quotes', (req, res) => {
 		res.redirect("/")
 	})
 	console.log(req.body)
+})
+
+app.put('/quotes', (req, res) => {
+  // Handle put request
 })
 
 
