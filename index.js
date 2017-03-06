@@ -33,8 +33,20 @@ app.post('/quotes', (req, res) => {
 	console.log(req.body)
 })
 
-app.put('/quotes', (req, res) => {
-  // Handle put request
+app.put('/quotes', (req, res) => {  
+	db.collection('quotes')
+	.findOneAndUpdate({name: 'Yoda'}, {
+		$set: {
+			name: req.body.name,
+			quote: req.body.quote
+		}
+	}, {
+		sort: {_id: -1},
+		upsert: true
+	}, (err, result) => {
+		if (err) return res.send(err)
+		res.send(result)	
+	})	
 })
 
 
