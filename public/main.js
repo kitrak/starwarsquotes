@@ -31,10 +31,10 @@ del.addEventListener('click', function() {
 		})
 	})
 	.then(res => {
-		if (res.ok) return res.json()
+	  if (res.ok) return res.json()
 	})
 	.then(data => {
-		console.log(data)
-		window.location.reload(true)
+	  console.log(data)
+	  window.location.reload(true)
 	})
 })
